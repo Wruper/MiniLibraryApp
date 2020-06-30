@@ -4,94 +4,87 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.res.AssetManager;
-import android.content.res.loader.AssetsProvider;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BookList extends AppCompatActivity {
+public class ReadTime extends AppCompatActivity {
 
-    private ArrayList<String> books =  new ArrayList<>();
-    private ListView bookList;
+    TextView readTime;
     private FloatingActionButton floaters;
+    private int pageCount = 0;
+    private double timeRead = 0; // in hours
 
     @Override
     public AssetManager getAssets() {
         return super.getAssets();
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_list);
-
+        setContentView(R.layout.activity_read_time);
         setIds();
+        getPages();
+        generateReadTime();
         setActions();
-
-        try {
-            addBooksToView();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        createAdapter();
-
-
-
     }
 
-    public boolean addBooksToView() throws IOException {
+
+
+    public boolean getPages(){
         try {
-            InputStream bookslist = getAssets().open("books.txt");
-            Scanner myReader = new Scanner(bookslist);
+            InputStream readTime = getAssets().open("pages.txt");
+            Scanner myReader = new Scanner(readTime);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                books.add(data);
+                int newData = Integer.parseInt(data);
+                pageCount += newData;
             }
-            myReader.close();
             return true;
-        } catch (FileNotFoundException e) {
-            Toast.makeText(BookList.this, "ERROR: No file exists.", Toast.LENGTH_SHORT);
+        }
+
+        catch (IOException e) {
+            Toast.makeText(ReadTime.this, "ERROR: No file exists.", Toast.LENGTH_SHORT);
             e.printStackTrace();
             return false;
         }
-    }
 
-    public void createAdapter(){
-            ArrayAdapter<String> booksAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,books);
-            bookList.setAdapter(booksAdapter);
-        }
+
+    }
 
     public void setIds(){
-        bookList = findViewById(R.id.listView);
         floaters = findViewById(R.id.backBtn);
+        readTime = findViewById(R.id.readTime_txt);
     }
-
 
     public void setActions(){
         floaters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(BookList.this,MainActivity.class);
+                Intent intent = new Intent(ReadTime.this,MainActivity.class);
                 startActivity(intent);
             }
         });
+
+        readTime.setText("In total you spend: " + timeRead + " hours reading!");
+
+
     }
+
+    public void generateReadTime(){
+        timeRead = (pageCount * 2) / 60;
+        // multiply time read by average reading time 2 mins and then geth the hours
+
+    }
+
 }
-
-
-
