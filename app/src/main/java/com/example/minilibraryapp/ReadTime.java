@@ -33,8 +33,6 @@ public class ReadTime extends AppCompatActivity {
         setActions();
     }
 
-
-
     public boolean getPages(){
         FileInputStream fis = null;
         try {
@@ -77,7 +75,7 @@ public class ReadTime extends AppCompatActivity {
 
     public void generateReadTime(){
         timeRead = ((pageCount * 1.5) / 60);
-        timeRead = Double.parseDouble(new DecimalFormat("#.##").format(timeRead));
+        //timeRead = Double.parseDouble(new DecimalFormat("#.##").format(timeRead));
         // multiply time read by average reading time 1.5 mins (1 min and  30 sec) and then geth the hours.
     }
 

@@ -29,8 +29,6 @@ public class ReadPagesCount extends AppCompatActivity {
         setActions();
     }
 
-
-
     public boolean getPages(){
         FileInputStream fis = null;
         try {

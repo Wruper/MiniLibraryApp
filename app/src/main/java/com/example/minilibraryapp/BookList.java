@@ -57,7 +57,6 @@ public class BookList extends AppCompatActivity {
         }
     }
 
-
     public void createAdapter(){
             ArrayAdapter<String> booksAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,books);
             bookList.setAdapter(booksAdapter);

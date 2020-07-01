@@ -62,6 +62,7 @@ public class InsertBook extends AppCompatActivity {
                     editPage.getText().clear();
                     Toast.makeText(InsertBook.this,"The list ahs been updated",Toast.LENGTH_LONG).show();
                 } catch (FileNotFoundException e) {
+                    Toast.makeText(InsertBook.this,"The file was not found!",Toast.LENGTH_LONG);
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
