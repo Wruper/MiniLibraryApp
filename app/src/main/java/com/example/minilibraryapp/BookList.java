@@ -1,30 +1,20 @@
 package com.example.minilibraryapp;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-
 import android.content.Intent;
-
 import android.os.Bundle;
-
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-
 import java.io.BufferedReader;
-import java.io.File;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class BookList extends AppCompatActivity {
 
@@ -45,6 +35,7 @@ public class BookList extends AppCompatActivity {
         try {
             addBooksToView();
         } catch (FileNotFoundException e) {
+            Toast.makeText(BookList.this,"The file was not found!",Toast.LENGTH_LONG);
             e.printStackTrace();
         }
         createAdapter();
@@ -65,6 +56,7 @@ public class BookList extends AppCompatActivity {
                 books.add(text);
             }
         } catch (IOException e) {
+            Toast.makeText(BookList.this,"The file was not found!",Toast.LENGTH_LONG);
             e.printStackTrace();
         }
     }
