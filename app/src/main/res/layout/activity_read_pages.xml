@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReadTime">
-
-
+    tools:context=".ReadPagesCount">
 
     <TextView
         android:id="@+id/welcome_txt"
@@ -18,7 +16,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/square"
         android:fontFamily="@font/mexcellent"
-        android:text="Your time spend reading!"
+        android:text="Read page count!"
         android:textColor="@color/light_blue"
         android:textSize="30sp"
         />
