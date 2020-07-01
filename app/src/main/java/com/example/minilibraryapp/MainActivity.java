@@ -4,19 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
-
-import java.io.File;
-import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button btn1,btn2,btn3,btn4;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
         setIds();
         setListeners();
-
-
     }
-
 
     public void setIds(){
         btn1 = findViewById(R.id.btn1);

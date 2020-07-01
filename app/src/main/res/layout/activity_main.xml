@@ -6,42 +6,42 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_marginTop="150dp"
         android:id="@+id/welcome_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to your library!"
         android:layout_centerHorizontal="true"
-        android:textSize="25sp"
-        android:textColor="@color/light_blue"
+        android:layout_marginTop="150dp"
         android:background="@drawable/square"
         android:fontFamily="@font/mexcellent"
-        />
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show all books"
-        android:id="@+id/btn1"
-        android:layout_centerInParent="true"
-        android:width="200dp"
-        android:fontFamily="@font/mexcellent"
+        android:text="Welcome to your library!"
         android:textColor="@color/light_blue"
+        android:textSize="25sp"
+        />
+
+
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:width="200dp"
         android:backgroundTint="@color/black"
+        android:fontFamily="@font/mexcellent"
+        android:text="Show all books"
+        android:textColor="@color/light_blue"
         />
 
     <Button
+        android:id="@+id/btn2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show read time"
-        android:layout_centerInParent="true"
         android:layout_below="@+id/btn1"
+        android:layout_centerInParent="true"
         android:layout_marginTop="15dp"
-        android:id="@+id/btn2"
         android:width="200dp"
-        android:fontFamily="@font/mexcellent"
         android:backgroundTint="@color/black"
+        android:fontFamily="@font/mexcellent"
+        android:text="Show read time"
         android:textColor="@color/light_blue"
         />
 
@@ -49,27 +49,27 @@
         android:id="@+id/btn3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show read page count"
         android:layout_below="@+id/btn2"
-        android:layout_marginTop="15dp"
         android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
         android:width="200dp"
-        android:fontFamily="@font/mexcellent"
         android:backgroundTint="@color/black"
+        android:fontFamily="@font/mexcellent"
+        android:text="Show read page count"
         android:textColor="@color/light_blue"/>
 
     <Button
+        android:id="@+id/btn4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Insert a new book"
-        android:layout_centerInParent="true"
         android:layout_below="@id/btn3"
+        android:layout_centerInParent="true"
         android:layout_marginTop="15dp"
         android:width="200dp"
-        android:fontFamily="@font/mexcellent"
         android:backgroundTint="@color/black"
-        android:textColor="@color/light_blue"
-        android:id="@+id/btn4"/>
+        android:fontFamily="@font/mexcellent"
+        android:text="Insert a new book"
+        android:textColor="@color/light_blue"/>
 
 
 

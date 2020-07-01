@@ -1,38 +1,27 @@
 package com.example.minilibraryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class ReadTime extends AppCompatActivity {
 
     private static final String FILE_PAGES = "pages.txt";
-    TextView readTime;
+    private TextView readTime;
     private FloatingActionButton floaters;
     private int pageCount = 0;
     private double timeRead = 0; // in hours
-
-    @Override
-    public AssetManager getAssets() {
-        return super.getAssets();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +54,6 @@ public class ReadTime extends AppCompatActivity {
             e.printStackTrace();
             return false;
         }
-
-
     }
 
     public void setIds(){
@@ -91,9 +78,7 @@ public class ReadTime extends AppCompatActivity {
     public void generateReadTime(){
         timeRead = ((pageCount * 1.5) / 60);
         timeRead = Double.parseDouble(new DecimalFormat("#.##").format(timeRead));
-
-        // multiply time read by average reading time 1.5 mins or 1 min and 30 sec and then geth the hours
-
+        // multiply time read by average reading time 1.5 mins (1 min and  30 sec) and then geth the hours.
     }
 
 }

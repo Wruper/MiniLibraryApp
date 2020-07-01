@@ -24,7 +24,6 @@ public class BookList extends AppCompatActivity {
     private static final String FILE_NAME = "books.txt";
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +38,6 @@ public class BookList extends AppCompatActivity {
             e.printStackTrace();
         }
         createAdapter();
-
-
-
     }
 
     public void addBooksToView() throws FileNotFoundException {
@@ -71,9 +67,7 @@ public class BookList extends AppCompatActivity {
         bookList = findViewById(R.id.listView);
         floaters = findViewById(R.id.backBtn);
 
-
     }
-
 
     public void setActions(){
         floaters.setOnClickListener(new View.OnClickListener() {

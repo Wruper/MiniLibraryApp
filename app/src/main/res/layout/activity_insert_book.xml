@@ -4,70 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InsertBookAndPages">
+    tools:context=".InsertBook">
 
 
     <TextView
-        android:layout_marginTop="150dp"
         android:id="@+id/welcome_txt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your read pages!"
         android:layout_centerHorizontal="true"
-        android:textSize="30sp"
-        android:textColor="@color/light_blue"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/square"
         android:fontFamily="@font/mexcellent"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
+        android:text="Your read pages!"
+        android:textColor="@color/light_blue"
+        android:textSize="30sp"
         />
 
     <EditText
+        android:id="@+id/authTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/welcome_txt"
-        android:layout_marginTop="100dp"
         android:layout_centerInParent="true"
-        android:hint="Author --> [Title] "
-        android:textSize="25sp"
-        android:textColor="@color/light_blue"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/mexcellent"
-        android:id="@+id/authTitle"/>
+        android:hint="Author --> [Title] "
+        android:textColor="@color/light_blue"
+        android:textSize="25sp"/>
 
     <EditText
+        android:id="@+id/pages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/authTitle"
-        android:layout_marginTop="50dp"
         android:layout_centerInParent="true"
-        android:hint="Pages"
-        android:textSize="25sp"
-        android:textColor="@color/light_blue"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/mexcellent"
-        android:id="@+id/pages"/>
+        android:hint="Pages"
+        android:inputType="numberSigned"
+        android:textColor="@color/light_blue"
+        android:textSize="25sp"/>
 
     <Button
+        android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
-        android:id="@+id/save"
-        android:layout_centerInParent="true"
-        android:width="200dp"
-        android:fontFamily="@font/mexcellent"
-        android:textColor="@color/light_blue"
-        android:backgroundTint="@color/black"
         android:layout_below="@+id/pages"
-        android:layout_marginTop="50dp"/>
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
+        android:width="200dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/mexcellent"
+        android:text="Save"
+        android:textColor="@color/light_blue"/>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        app:backgroundTint="@color/light_blue"
+        android:layout_alignParentBottom="true"
         android:src="@drawable/ic_action_name"
-        android:id="@+id/backBtn"
+        app:backgroundTint="@color/light_blue"
 
         />
 
