@@ -11,14 +11,19 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ReadTime extends AppCompatActivity {
 
+    private static final String FILE_PAGES = "pages.txt";
     TextView readTime;
     private FloatingActionButton floaters;
     private int pageCount = 0;
@@ -42,12 +47,14 @@ public class ReadTime extends AppCompatActivity {
 
 
     public boolean getPages(){
+        FileInputStream fis = null;
         try {
-            InputStream readTime = getAssets().open("pages.txt");
-            Scanner myReader = new Scanner(readTime);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                int newData = Integer.parseInt(data);
+            fis = openFileInput(FILE_PAGES);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            String text;
+            while((text = br.readLine()) != null){
+                int newData = Integer.parseInt(text);
                 pageCount += newData;
             }
             return true;
@@ -82,8 +89,10 @@ public class ReadTime extends AppCompatActivity {
     }
 
     public void generateReadTime(){
-        timeRead = (pageCount * 2) / 60;
-        // multiply time read by average reading time 2 mins and then geth the hours
+        timeRead = ((pageCount * 1.5) / 60);
+        timeRead = Double.parseDouble(new DecimalFormat("#.##").format(timeRead));
+
+        // multiply time read by average reading time 1.5 mins or 1 min and 30 sec and then geth the hours
 
     }
 

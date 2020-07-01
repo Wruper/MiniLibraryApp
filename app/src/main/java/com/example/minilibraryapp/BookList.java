@@ -2,10 +2,11 @@ package com.example.minilibraryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
-import android.content.res.AssetManager;
-import android.content.res.loader.AssetsProvider;
+
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -13,12 +14,15 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.io.BufferedWriter;
+
+import java.io.BufferedReader;
+import java.io.File;
+
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.Writer;
+
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,11 +31,8 @@ public class BookList extends AppCompatActivity {
     private ArrayList<String> books =  new ArrayList<>();
     private ListView bookList;
     private FloatingActionButton floaters;
+    private static final String FILE_NAME = "books.txt";
 
-    @Override
-    public AssetManager getAssets() {
-        return super.getAssets();
-    }
 
 
     @Override
@@ -41,35 +42,33 @@ public class BookList extends AppCompatActivity {
 
         setIds();
         setActions();
-
         try {
             addBooksToView();
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
         createAdapter();
 
 
 
     }
 
-    public boolean addBooksToView() throws IOException {
+    public void addBooksToView() throws FileNotFoundException {
+        FileInputStream fis = null;
+
         try {
-            InputStream bookslist = getAssets().open("books.txt");
-            Scanner myReader = new Scanner(bookslist);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                books.add(data);
+            fis = openFileInput(FILE_NAME);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            String text;
+            while((text = br.readLine()) != null){
+                books.add(text);
             }
-            myReader.close();
-            return true;
-        } catch (FileNotFoundException e) {
-            Toast.makeText(BookList.this, "ERROR: No file exists.", Toast.LENGTH_SHORT);
+        } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
     }
+
 
     public void createAdapter(){
             ArrayAdapter<String> booksAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,books);
@@ -79,6 +78,8 @@ public class BookList extends AppCompatActivity {
     public void setIds(){
         bookList = findViewById(R.id.listView);
         floaters = findViewById(R.id.backBtn);
+
+
     }
 
 
@@ -91,6 +92,7 @@ public class BookList extends AppCompatActivity {
             }
         });
     }
+
 }
 
 
