@@ -1,6 +1,5 @@
 package com.example.minilibraryapp;
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -8,12 +7,14 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class BookList extends AppCompatActivity {
@@ -21,6 +22,8 @@ public class BookList extends AppCompatActivity {
     private ArrayList<String> books =  new ArrayList<>();
     private ListView bookList;
     private static final String FILE_NAME = "books.txt";
+    private boolean isButtonPressed = false;
+    private FloatingActionButton btn;
 
 
     @Override
@@ -36,6 +39,7 @@ public class BookList extends AppCompatActivity {
             e.printStackTrace();
         }
         createAdapter();
+        setAction();
     }
 
     public void addBooksToView() throws FileNotFoundException {
@@ -62,10 +66,31 @@ public class BookList extends AppCompatActivity {
 
     public void setIds(){
         bookList = findViewById(R.id.listView);
+        btn = findViewById(R.id.btn);
 
     }
 
+    public void sortList(){
+        if(isButtonPressed){
+            Collections.reverse(books);
+            isButtonPressed = false;
 
+        }
+        else{
+            Collections.sort(books);
+            isButtonPressed = true;
+        }
+        createAdapter();
+    }
+
+    public void setAction(){
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sortList();
+            }
+        });
+    }
 }
 
 
