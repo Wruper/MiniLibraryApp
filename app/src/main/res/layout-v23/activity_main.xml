@@ -28,7 +28,9 @@
         android:backgroundTint="@color/black"
         android:fontFamily="@font/mexcellent"
         android:text="Show all books"
-        android:textColor="@color/light_blue" />
+        android:textColor="@color/light_blue"
+        android:background="@drawable/square"
+        />
 
     <Button
         android:id="@+id/btn2"
@@ -69,8 +71,7 @@
         android:backgroundTint="@color/black"
         android:fontFamily="@font/mexcellent"
         android:text="Insert a new book"
-        android:textColor="@color/light_blue"
-        />
+        android:textColor="@color/light_blue"/>
 
     <ImageView
         android:layout_width="205dp"
@@ -103,6 +104,6 @@
         android:layout_below="@id/btn3"/>
 
 
-
+   
 
 </RelativeLayout>
