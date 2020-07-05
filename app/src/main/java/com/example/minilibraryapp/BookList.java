@@ -20,7 +20,6 @@ public class BookList extends AppCompatActivity {
 
     private ArrayList<String> books =  new ArrayList<>();
     private ListView bookList;
-    private FloatingActionButton floaters;
     private static final String FILE_NAME = "books.txt";
 
 
@@ -30,7 +29,6 @@ public class BookList extends AppCompatActivity {
         setContentView(R.layout.activity_book_list);
 
         setIds();
-        setActions();
         try {
             addBooksToView();
         } catch (FileNotFoundException e) {
@@ -64,19 +62,9 @@ public class BookList extends AppCompatActivity {
 
     public void setIds(){
         bookList = findViewById(R.id.listView);
-        floaters = findViewById(R.id.backBtn);
 
     }
 
-    public void setActions(){
-        floaters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(BookList.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
 
 }
 

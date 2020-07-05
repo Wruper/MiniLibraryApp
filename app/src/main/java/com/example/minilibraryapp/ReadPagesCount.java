@@ -15,7 +15,6 @@ import java.io.InputStreamReader;
 
 public class ReadPagesCount extends AppCompatActivity {
     private TextView readTime;
-    private FloatingActionButton floaters;
     private static final String FILE_PAGES = "pages.txt";
     private int pageCount = 0;
 
@@ -52,18 +51,10 @@ public class ReadPagesCount extends AppCompatActivity {
     }
 
     public void setIds(){
-        floaters = findViewById(R.id.backBtn);
         readTime = findViewById(R.id.readTime_txt);
     }
 
     public void setActions(){
-        floaters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ReadPagesCount.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
         readTime.setText("In total you read: " + pageCount + " pages!");
 

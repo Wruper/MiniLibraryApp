@@ -27,16 +27,5 @@
         />
 
 
-   <com.google.android.material.floatingactionbutton.FloatingActionButton
-       android:id="@+id/backBtn"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_alignParentRight="true"
-       android:layout_alignParentBottom="true"
-       android:src="@drawable/ic_action_name"
-       app:backgroundTint="@color/light_blue"
-
-       />
-
 
 </RelativeLayout>

@@ -19,7 +19,6 @@ public class ReadTime extends AppCompatActivity {
 
     private static final String FILE_PAGES = "pages.txt";
     private TextView readTime;
-    private FloatingActionButton floaters;
     private int pageCount = 0;
     private double timeRead = 0; // in hours
 
@@ -55,18 +54,10 @@ public class ReadTime extends AppCompatActivity {
     }
 
     public void setIds(){
-        floaters = findViewById(R.id.backBtn);
         readTime = findViewById(R.id.readTime_txt);
     }
 
     public void setActions(){
-        floaters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ReadTime.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
         readTime.setText("In total you spend: " + timeRead + " hours reading!");
 
