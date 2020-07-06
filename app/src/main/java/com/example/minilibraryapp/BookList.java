@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -14,16 +15,23 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 
 public class BookList extends AppCompatActivity {
 
-    private ArrayList<String> books =  new ArrayList<>();
+    List<HashMap<String,String>> listItem =  new ArrayList<>(); // for unsorted listview
     private ListView bookList;
     private static final String FILE_NAME = "books.txt";
+    private static final String FILE_PAGE = "pages.txt";
     private boolean isButtonPressed = false;
     private FloatingActionButton btn;
+    HashMap<String,String> booksPage =  new HashMap<>();
+    TreeMap<String,String> sorted = new TreeMap<>(booksPage);
 
 
     @Override
@@ -38,31 +46,67 @@ public class BookList extends AppCompatActivity {
             Toast.makeText(BookList.this,"The file was not found!",Toast.LENGTH_LONG);
             e.printStackTrace();
         }
+        iterateOverUnsorted();
         createAdapter();
         setAction();
     }
 
     public void addBooksToView() throws FileNotFoundException {
-        FileInputStream fis = null;
-
+        FileInputStream fisb = null;
+        FileInputStream fisp = null;
         try {
-            fis = openFileInput(FILE_NAME);
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader br = new BufferedReader(isr);
-            String text;
-            while((text = br.readLine()) != null){
-                books.add(text);
+            fisb = openFileInput(FILE_NAME);
+            fisp = openFileInput(FILE_PAGE);
+            InputStreamReader isrb = new InputStreamReader(fisb);
+            InputStreamReader isrp = new InputStreamReader(fisp);
+            BufferedReader brb = new BufferedReader(isrb);
+            BufferedReader brp = new BufferedReader(isrp);
+            String textB =  null;
+            String textP = null;
+            while((textB = brb.readLine()) != null && (textP = brp.readLine()) != null){
+                booksPage.put(textB,textP);
             }
         } catch (IOException e) {
             Toast.makeText(BookList.this,"The file was not found!",Toast.LENGTH_LONG);
             e.printStackTrace();
         }
+
+    }
+
+    public void iterateOverUnsorted() {
+        List<HashMap<String,String>> temp =  new ArrayList<>(); // temp list, that helps me sort the list view
+        Iterator it = booksPage.entrySet().iterator();// itterates over the new TreeMap
+        while (it.hasNext()) {
+            HashMap<String, String> resultMap = new HashMap<>();
+            Map.Entry pair = (Map.Entry) it.next();
+            resultMap.put("First Line", pair.getKey().toString());
+            resultMap.put("Second Line", pair.getValue().toString());
+            temp.add(resultMap); // add the sorted results in the temp Hashmap
+            listItem = temp; // refresh the list view in unsorted order
+        }
+    }
+
+    public void iterateOverSorted() {
+        List<HashMap<String, String>> temp = new ArrayList<>(); // temp list, that helps me sort the list view
+        sorted.putAll(booksPage); // I put my HashMap in a TreeMap that sorts the list view elements alphabetically
+        Iterator it = sorted.entrySet().iterator(); // itterates over the new TreeMap
+        while (it.hasNext()) {
+            HashMap<String, String> resultMap = new HashMap<>();
+            Map.Entry pair = (Map.Entry) it.next();
+            resultMap.put("First Line", pair.getKey().toString());
+            resultMap.put("Second Line", pair.getValue().toString());
+            temp.add(resultMap); // add the sorted results in the temp Hashmap
+            listItem = temp; // refresh the list view in sorted order
+        }
     }
 
     public void createAdapter(){
-            ArrayAdapter<String> booksAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,books);
-            bookList.setAdapter(booksAdapter);
-        }
+        SimpleAdapter adapter = new SimpleAdapter(BookList.this,listItem,R.layout.list_item,
+                new String []{"First Line", "Second Line"}, new int [] {R.id.listMain,
+                R.id.listMini});
+
+        bookList.setAdapter(adapter);
+    }
 
     public void setIds(){
         bookList = findViewById(R.id.listView);
@@ -72,13 +116,14 @@ public class BookList extends AppCompatActivity {
 
     public void sortList(){
         if(isButtonPressed){
-            Collections.reverse(books);
+            iterateOverUnsorted();
             isButtonPressed = false;
 
         }
-        else{
-            Collections.sort(books);
+        else {
+            iterateOverSorted();
             isButtonPressed = true;
+
         }
         createAdapter();
     }
