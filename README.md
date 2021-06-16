@@ -7,3 +7,4 @@ This is my first small android application that stores the end-users read books.
 * End-user is able to see the read pages count.
 * End-user is able view the read books and their pages.
 
+mit
